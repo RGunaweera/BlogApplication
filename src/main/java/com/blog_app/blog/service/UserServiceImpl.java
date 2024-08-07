@@ -18,11 +18,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -33,13 +28,28 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUser(int id) {
-        userRepository.deleteById(id);
+    public void saveUser(User user) {
+        if(user.getFirstName() == null || user.getFirstName().isEmpty() ||
+                user.getLastName() == null || user.getLastName().isEmpty() ||
+                user.getEmail() == null || user.getEmail().isEmpty() ||
+                user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("All data is required");
+        }
+        userRepository.save(user);
     }
+
 
     @Override
     public User updateUser(int id, User user) {
         User existingUser = userRepository.findById(id).orElse(null);
+
+        if(user.getFirstName() == null || user.getFirstName().isEmpty() ||
+                user.getLastName() == null || user.getLastName().isEmpty() ||
+                user.getEmail() == null || user.getEmail().isEmpty() ||
+                user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("All data is required");
+        }
+
         if (existingUser != null) {
             existingUser.setFirstName(user.getFirstName());
             existingUser.setLastName(user.getLastName());
@@ -49,6 +59,11 @@ public class UserServiceImpl implements UserService{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
     }
 
 }
