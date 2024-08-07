@@ -23,14 +23,36 @@ export default function User() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = {
+    const user = {
       firstName,
       lastName,
       email,
       password,
     };
-    console.log(JSON.stringify(formData, null, 2)); // Log the input value on submit
+  
+    console.log(user); // Log the input value on submit
+  
+    fetch("http://localhost:8080/api/user/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
