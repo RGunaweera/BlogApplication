@@ -1,9 +1,12 @@
 import './App.css';
+import AppBar from './components/Appbar';
+import User from './components/User';
 
 function App() {
   return (
-    <div>
-      <h1>Hello world</h1>
+    <div className='Appbar'>
+      {/* <AppBar /> */}
+      <User />
     </div>
   );
 }
