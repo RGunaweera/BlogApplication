@@ -5,7 +5,7 @@ import User from './components/User';
 function App() {
   return (
     <div className='Appbar'>
-      {/* <AppBar /> */}
+      <AppBar />
       <User />
     </div>
   );
