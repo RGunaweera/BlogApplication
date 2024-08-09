@@ -1,11 +1,31 @@
 .appbar{
-    background-color: #dedede !important;  
+    background-color: #ffffff !important;  
     color: black !important;
-    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2) !important;
 }
 
 .appbar-container{
+    color: black !important;
 }
 
-.appbar-toolbar{
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    padding: 0 16px; /* Add default padding for smaller screens */
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+/* Adjust padding for larger screens */
+@media (min-width: 768px) {
+    .nav-links {
+        padding: 0 40px; /* Adjust as needed for medium screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-links {
+        padding: 0 280px; /* Larger padding for desktop screens */
+    }
 }
