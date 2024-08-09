@@ -104,7 +104,7 @@ function ResponsiveAppBar() {
           {/* responsive navigation menu for larger screens*/}   
           <Box  className='nav-links' sx={{display: {xs: "none", md: "flex" }, }}>
             {pages.map((page) => (
-              <Button
+              <Button className="nav-link"
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block", fontFamily: "Josefin Sans, sans-serif", fontSize: "13px", fontWeight: 500, }}

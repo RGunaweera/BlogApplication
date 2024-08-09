@@ -11,21 +11,47 @@
 .nav-links {
     display: flex;
     flex-direction: row;
-    padding: 0 16px; /* Add default padding for smaller screens */
+    padding: 0 16px;
     gap: 20px;
     flex-grow: 1;
     justify-content: space-around;
 }
 
+.nav-links .nav-link {
+    position: relative;
+    text-decoration: none; 
+    font-family: 'Josefin Sans', sans-serif; 
+    font-size: 13px;
+    font-weight: 500;
+    color: black; 
+}
+
+.nav-links .nav-link::after {
+    content: ''; 
+    position: absolute;
+    left: 0;
+    bottom: -2px; 
+    width: 100%;
+    height: 1.4px; 
+    background-color: black; 
+    transition: opacity 0.3s ease;
+    opacity: 0; 
+}
+
+.nav-links .nav-link:hover::after {
+    opacity: 1; 
+}
+
+
 /* Adjust padding for larger screens */
 @media (min-width: 768px) {
     .nav-links {
-        padding: 0 40px; /* Adjust as needed for medium screens */
+        padding: 0 40px;
     }
 }
 
 @media (min-width: 1024px) {
     .nav-links {
-        padding: 0 280px; /* Larger padding for desktop screens */
+        padding: 0 280px; 
     }
 }
