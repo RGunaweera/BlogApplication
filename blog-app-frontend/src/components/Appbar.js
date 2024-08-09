@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./Appbar.css";
 
-const pages = ["Explore", "Places", "Blog", "About"];
+const pages = ["Home", "Explore", "Places", "Blog", "About"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
