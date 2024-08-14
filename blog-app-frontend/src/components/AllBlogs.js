@@ -7,9 +7,32 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { Container, Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './AllBlogs.css';
+import { useNavigate } from "react-router-dom";  
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#051560',
+      dark: '#111f56',
+      light: '#959cc9',
+    },
+  },
+});
 
 export default function MasonryImageList() {
+
+  const navigate = useNavigate();
+
+  const handleReadBlogs = () =>{
+    navigate('/allblogs');
+  }
+
+  const handleWriteBlogs = () =>{
+    navigate('/writeblog');
+  }
+
   return (
     <Box
       sx={{
@@ -31,10 +54,20 @@ export default function MasonryImageList() {
         <Typography className='blog-intro'>
           <h2>Read our latest travel blogs</h2>
           <p>Welcome to our little corner of the internet where we share stories, tips, and experiences from our travels around the world. Whether you’re a seasoned traveler or someone who dreams of exploring new places, We hope our blog inspires you to embark on your own adventures.</p>
-          <Container className='btns'>
-            <Button variant="outlined" className='btn-read'>Read Blogs</Button>
-            <Button variant="contained" className='btn-create'>Write a Blog</Button>
-          </Container>
+          <ThemeProvider theme={theme} className='btns'>
+            <Box sx={{ flexGrow: 0, display: 'flex', gap: '10px', justifyContent: 'center',}}> 
+              <Button 
+                variant="outlined" 
+                className='btn-read'
+                onClick={() => navigate('/allblogs')}
+                >Read Blogs</Button>
+              <Button 
+                variant="contained" 
+                className='btn-create'
+                onClick={() => navigate('/writeblog')}
+                >Write a Blog</Button>
+                </Box>
+          </ThemeProvider>
           
         </Typography>
         <ImageList variant="masonry" cols={4} gap={4} sx={{ overflow: 'hidden' }}>

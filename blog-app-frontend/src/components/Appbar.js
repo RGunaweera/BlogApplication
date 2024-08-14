@@ -1,3 +1,4 @@
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
@@ -10,15 +11,27 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import React from "react";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";  
 import "./Appbar.css";
 
 const pages = ["Home", "Explore", "Places", "Blog", "About"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#051560',
+      dark: '#111f56',
+      light: '#959cc9',
+    },
+  },
+});
+
 function Appbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();  // Initialize the useNavigate hook
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,6 +49,14 @@ function Appbar() {
     setAnchorElUser(null);
   };
 
+  const handleSignUp = () => {
+    navigate('/signup');  // Navigate to the Sign Up page
+  };
+
+  const handleSignIn = () => {
+    navigate('/signin');  // Navigate to the Sign In page
+  };
+
   return (
     <AppBar className="appbar">
       <Container sx={{ display: "flex", justifyContent: "center" }}>
@@ -45,10 +66,9 @@ function Appbar() {
             maxWidth: "1000px",
             justifyContent: "center",
             alignItems: "center",
-            width: "100%", 
+            width: "100%",
           }}
         >
-          {/* Logo and website name */}
           <img
             src="images/logo.png"
             width={"60px"}
@@ -72,7 +92,6 @@ function Appbar() {
             voyager
           </Typography>
 
-          {/* Responsive navigation menu for smaller screens */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -116,7 +135,6 @@ function Appbar() {
             </Menu>
           </Box>
 
-          {/* Navigation menu for larger screens */}
           <Box
             className="nav-menu"
             sx={{
@@ -137,8 +155,28 @@ function Appbar() {
             ))}
           </Box>
 
+          {/* Sign In and Sign Up Buttons */}
+          <ThemeProvider theme={theme}>
+            <Box sx={{ flexGrow: 0, display: 'flex', gap: '10px' }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => navigate('/signin')}
+              >
+                Sign In
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSignUp}
+              >
+                Sign Up
+              </Button>
+            </Box>
+          </ThemeProvider>
+
           {/* User profile menu */}
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
                 <Avatar alt="User Avatar" src="" />
@@ -146,7 +184,7 @@ function Appbar() {
             </Tooltip>
             <Menu
               sx={{
-                padding: "0px", // Removes all padding
+                padding: "0px", 
                 mt: "45px",
               }}
               id="menu-appbar"
@@ -177,7 +215,7 @@ function Appbar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
