@@ -5,6 +5,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";  
+
 
 const theme = createTheme({
   palette: {
@@ -21,6 +23,8 @@ export default function User() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const[confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate(); 
 
   const handleChangeFN = (event) => {
     setFirstName(event.target.value);
@@ -34,9 +38,26 @@ export default function User() {
   const handleChangePWD = (event) => {
     setPassword(event.target.value);
   };
+  const handleChangeCPWD = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (firstName === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
+      alert("Please fill in all fields!");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+    navigate('/');  
+
     const user = {
       firstName,
       lastName,
@@ -45,6 +66,8 @@ export default function User() {
     };
 
     console.log(user); // Log the input value on submit
+
+    
 
     fetch("http://localhost:8080/api/user/add", {
       method: "POST",
@@ -154,8 +177,8 @@ export default function User() {
                   type="password"
                   label="Confirm Password"
                   variant="outlined"
-                  value={password}
-                  onChange={handleChangePWD}
+                  value={confirmPassword}
+                  onChange={handleChangeCPWD}
                   fullWidth
                   margin="normal"
                 />
@@ -165,6 +188,7 @@ export default function User() {
                     color="primary"
                     fullWidth
                     sx={{ marginTop: 2, padding: "10px" }}
+                    type="submit"
                   >
                     Submit
                   </Button>
