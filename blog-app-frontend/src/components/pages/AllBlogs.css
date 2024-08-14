@@ -20,3 +20,12 @@
     font-size: 17px;
     font-weight: 350;
 }
+
+.btns Button{
+    letter-spacing: 1px !important;
+}
+
+.btns .btn-read{
+    margin-right: 20px;
+}
+

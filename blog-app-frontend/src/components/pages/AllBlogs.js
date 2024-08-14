@@ -1,8 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { Typography } from '@mui/material';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { Container, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 import './AllBlogs.css';
 
 export default function MasonryImageList() {
@@ -27,6 +31,11 @@ export default function MasonryImageList() {
         <Typography className='blog-intro'>
           <h2>Read our latest travel blogs</h2>
           <p>Welcome to our little corner of the internet where we share stories, tips, and experiences from our travels around the world. Whether you’re a seasoned traveler or someone who dreams of exploring new places, We hope our blog inspires you to embark on your own adventures.</p>
+          <Container className='btns'>
+            <Button variant="outlined" className='btn-read'>Read Blogs</Button>
+            <Button variant="contained" className='btn-create'>Write a Blog</Button>
+          </Container>
+          
         </Typography>
         <ImageList variant="masonry" cols={4} gap={4} sx={{ overflow: 'hidden' }}>
           {itemData.map((item) => (
@@ -36,6 +45,17 @@ export default function MasonryImageList() {
                 src={`${item.img}?w=248&fit=crop&auto=format`}
                 alt={item.title}
                 loading="lazy"
+              />
+              <ImageListItemBar
+                title={item.title}                
+                actionIcon={
+                  <IconButton
+                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                    aria-label={`info about ${item.title}`}
+                  >
+                    <InfoIcon />
+                  </IconButton>
+                }
               />
             </ImageListItem>
           ))}
@@ -48,12 +68,12 @@ export default function MasonryImageList() {
 const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1512757776214-26d36777b513?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Travel',
+    title: 'Explore',
   },
 
   {
     img: 'https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Adventure',
+    title: 'Travel',
   },
 
   {
@@ -63,7 +83,7 @@ const itemData = [
 
   {
     img: 'https://images.unsplash.com/photo-1530907487668-af02f65b4afe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Explore',
+    title: 'Adventure',
   }
 
 
