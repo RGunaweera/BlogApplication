@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import Home from "./components/pages/Home";
 import SignUp from "./components/pages/SignUp";
+import SignIn from "./components/pages/SignIn";
 import "./App.css";
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </Router>
     </Box>
