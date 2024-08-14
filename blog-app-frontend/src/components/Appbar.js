@@ -1,29 +1,29 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import Avatar from "@mui/material/Avatar";
+import React from "react";
 import "./Appbar.css";
 
 const pages = ["Home", "Explore", "Places", "Blog", "About"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+function Appbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -38,11 +38,23 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar className="appbar">
-      <Container className="appbar-container">
-        <Toolbar disableGutters className="appbar-toolbar">
-
-          {/* logo and website name */}
-          <img src="images/logo.png" width={"60px"} className="logo" />
+      <Container sx={{ display: "flex", justifyContent: "center" }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            maxWidth: "1000px",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%", 
+          }}
+        >
+          {/* Logo and website name */}
+          <img
+            src="images/logo.png"
+            width={"60px"}
+            className="logo"
+            alt="logo"
+          />
 
           <Typography
             className="logo-name"
@@ -50,23 +62,21 @@ function ResponsiveAppBar() {
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
-              padding: "0 2px",
               display: { xs: "none", md: "flex" },
               color: "inherit",
               textDecoration: "none",
               fontFamily: "Caveat, cursive",
               fontSize: "24px",
-              fontWeight: 500,
             }}
           >
             voyager
           </Typography>
 
-          {/* responsive navigation menu for smaller screens*/}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, }}>
+          {/* Responsive navigation menu for smaller screens */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -88,40 +98,57 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                fontFamily: "Josefin Sans, sans-serif",
-                display: { xs: "block", md: "none" },
-              }}
+              sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{fontFamily: "Josefin Sans, sans-serif", fontSize: "13px", fontWeight: 500,}} textAlign="center">{page}</Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Josefin Sans, sans-serif",
+                      fontSize: "14px",
+                    }}
+                    textAlign="center"
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          {/* responsive navigation menu for larger screens*/}   
-          <Box  className='nav-links' sx={{display: {xs: "none", md: "flex" }, }}>
+          {/* Navigation menu for larger screens */}
+          <Box
+            className="nav-menu"
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              gap: "20px",
+            }}
+          >
             {pages.map((page) => (
-              <Button className="nav-link"
+              <Button
+                className="nav-link"
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block", fontFamily: "Josefin Sans, sans-serif", fontSize: "13px", fontWeight: 500, }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          {/* user profile menu */}
-          <Box sx={{ flexGrow: 0,  }}>
+
+          {/* User profile menu */}
+          <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, }}>
-                <Avatar alt="Remy Sharp" src="" />
+              <IconButton onClick={handleOpenUserMenu}>
+                <Avatar alt="User Avatar" src="" />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px",}}
+              sx={{
+                padding: "0px", // Removes all padding
+                mt: "45px",
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -138,7 +165,15 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{fontFamily: "Josefin Sans, sans-serif", fontSize: "15px", fontWeight: 500,}} textAlign="center">{setting}</Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Josefin Sans, sans-serif",
+                      fontSize: "14px",
+                    }}
+                    textAlign="center"
+                  >
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -148,4 +183,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+export default Appbar;
