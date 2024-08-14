@@ -16,20 +16,22 @@ public class Blog {
     private int id;
     private String title;
     private String author;
+    private String category;
     private String content;
     private Date publishedDate;
     private Date updatedDate;
 
-    public Blog(int id, String title, String author, String content, Date publishedDate, Date updatedDate) {
+    public Blog() {
+    }
+
+    public Blog(int id, String title, String author, String category, String content, Date publishedDate, Date updatedDate) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.category = category;
         this.content = content;
         this.publishedDate = publishedDate;
         this.updatedDate = updatedDate;
-    }
-
-    public Blog() {
     }
 
     public int getId() {
@@ -54,6 +56,14 @@ public class Blog {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getContent() {
@@ -86,6 +96,7 @@ public class Blog {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", category='" + category + '\'' +
                 ", content='" + content + '\'' +
                 ", publishedDate=" + publishedDate +
                 ", updatedDate=" + updatedDate +
